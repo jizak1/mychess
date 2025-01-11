@@ -1,0 +1,181 @@
+:root {
+	--kotak-putih: #f0d9b5;
+	--kotak-hitam: #b58863;
+	--highlight: rgba(155, 199, 0, 0.41);
+	--possible-move: rgba(20, 85, 30, 0.5);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Segoe UI', system-ui, sans-serif;
+	background: #312e2b;
+	color: #fff;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem;
+}
+
+/* Header */
+.header {
+	width: 100%;
+	max-width: 1000px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2rem;
+	padding: 1rem;
+	background: #272522;
+	border-radius: 8px;
+}
+
+.logo {
+	font-size: 2rem;
+	font-weight: bold;
+	color: #fff;
+}
+
+/* Container Utama */
+.container {
+	display: grid;
+	grid-template-columns: 250px 1fr 250px;
+	gap: 2rem;
+	max-width: 1200px;
+	width: 100%;
+}
+
+/* Papan Catur */
+.board-container {
+	aspect-ratio: 1;
+	position: relative;
+	border: 8px solid #404040;
+	border-radius: 4px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.board {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(8, 1fr);
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.square {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.square-light {
+	background-color: var(--kotak-putih);
+}
+
+.square-dark {
+	background-color: var(--kotak-hitam);
+}
+
+.piece {
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	cursor: grab;
+	transition: transform 0.2s;
+	z-index: 2;
+}
+
+.piece:hover {
+	transform: scale(1.1);
+}
+
+.piece.dragging {
+	cursor: grabbing;
+	z-index: 1000;
+}
+
+/* Koordinat papan */
+.coordinates {
+	position: absolute;
+	color: #b58863;
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
+.file {
+	bottom: -25px;
+	right: 10px;
+}
+
+.rank {
+	top: 10px;
+	left: -25px;
+}
+
+/* Panel Samping */
+.side-panel {
+	background: #272522;
+	padding: 1rem;
+	border-radius: 8px;
+	height: fit-content;
+}
+
+.player-info {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem;
+	background: #363432;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+}
+
+.player-avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #4a4a4a;
+}
+
+.player-name {
+	font-weight: bold;
+}
+
+.timer {
+	font-family: monospace;
+	font-size: 1.5rem;
+}
+
+/* Highlight */
+.square.selected {
+	background-color: var(--highlight);
+}
+
+.square.possible-move::after {
+	content: '';
+	position: absolute;
+	width: 25%;
+	height: 25%;
+	background: var(--possible-move);
+	border-radius: 50%;
+}
+
+.square.possible-capture::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 3px solid var(--possible-move);
+	border-radius: 50%;
+}
