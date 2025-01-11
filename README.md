@@ -1,1 +1,1 @@
-Magnus Carlsen type shit (lol) 
+Magnus Carlsen is the goat, y'all already knooooo
